@@ -1,0 +1,6 @@
+ .chat-container {
+      z-index: 1000;
+    }
+    .chat-messages {
+      background-color: #f8f9fa;
+    }

@@ -1,0 +1,29 @@
+<div class="assistant-suggestions-container">
+  <h2>Search Results for "{{ query }}"</h2>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <p>🔍 Finding the best products for you...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <!-- Product Suggestions -->
+  <div *ngIf="!isLoading && !error" class="suggestions-grid">
+    <div *ngFor="let product of products" class="suggestion-card" (click)="goToProduct(product)">
+      <img [src]="product.image" alt="{{ product.name }}">
+      <div class="card-details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Button -->
+  <div class="back-button">
+    <button (click)="goHome()">⬅ Back to Home</button>
+  </div>
+</div>

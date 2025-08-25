@@ -1,0 +1,37 @@
+<div class="container py-4">
+  <h2 class="mb-4 text-primary">💬 Gemini AI Playground</h2>
+
+  <!-- Prompt Input -->
+  <div class="card p-3 shadow-sm mb-3">
+    <div class="mb-3">
+      <label for="prompt" class="form-label">Your Prompt</label>
+      <textarea
+        id="prompt"
+        [(ngModel)]="prompt"
+        class="form-control"
+        rows="3"
+        placeholder="Ask something to Gemini..."
+        (keydown.enter)="onEnterKey($event)"
+      ></textarea>
+    </div>
+    <button
+      class="btn btn-primary"
+      (click)="submitPrompt()"
+      [disabled]="isLoading"
+    >
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+      Send
+    </button>
+  </div>
+
+  <!-- Error Alert -->
+  <div *ngIf="error" class="alert alert-danger mt-3">
+    {{ error }}
+  </div>
+
+  <!-- AI Response -->
+  <div *ngIf="response" class="card p-3 shadow-sm mt-3">
+    <h5 class="text-success">Gemini Response:</h5>
+    <pre class="mb-0">{{ response }}</pre>
+  </div>
+</div>

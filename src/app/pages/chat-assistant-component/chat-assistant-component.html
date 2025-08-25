@@ -1,0 +1,62 @@
+ <div class="chat-container position-fixed bottom-0 end-0 mb-4 me-4">
+      <div class="card shadow-lg" style="width: 350px;">
+        <!-- Chat Header -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">AI Assistant</h5>
+          <button (click)="toggleChat()" class="btn btn-sm btn-light">
+            {{ isOpen ? '×' : '💬' }}
+          </button>  
+        </div>
+        
+        <!-- Chat Body - shown only when open -->
+        <div class="card-body p-0" [class.d-none]="!isOpen">
+          <div #chatMessages class="chat-messages p-3" style="height: 300px; overflow-y: auto;">
+            <!-- System message -->
+            <div class="mb-3">
+              <div class="alert alert-info p-2 mb-2">
+                <strong>Assistant:</strong> Always here to help
+              </div>
+              <div class="alert alert-primary p-2">
+                <strong>Assistant:</strong> Hello! I'm your AI assistant. How can I help?
+              </div>
+            </div>
+            
+            <!-- Suggestions based on page content -->
+            <div *ngIf="suggestions.length > 0" class="mb-3">
+              <h6 class="text-muted small mb-2">Suggestions based on this page:</h6>
+              <div *ngFor="let suggestion of suggestions" class="mb-2">
+                <button (click)="selectSuggestion(suggestion)" 
+                        class="btn btn-outline-secondary btn-sm w-100 text-start">
+                  {{ suggestion }}
+                </button>
+              </div>
+            </div>
+            
+            <!-- Message history -->
+            <div *ngFor="let message of messages" class="mb-3">
+              <div *ngIf="message.sender === 'user'" class="text-end">
+                <div class="d-inline-block bg-light p-2 rounded">
+                  {{ message.text }}
+                </div>
+              </div>
+              <div *ngIf="message.sender === 'assistant'" class="text-start">
+                <div class="d-inline-block bg-primary text-white p-2 rounded">
+                  {{ message.text }}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Input area -->
+          <div class="input-group p-3 border-top">
+            <input type="text" [(ngModel)]="userInput" 
+                   (keyup.enter)="sendMessage()"
+                   class="form-control" 
+                   placeholder="Type your message...">
+            <button (click)="sendMessage()" class="btn btn-primary">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

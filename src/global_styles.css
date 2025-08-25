@@ -1,0 +1,145 @@
+/* -----------------------------------
+   Google Font (Inter)
+----------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f9fafb; /* Default light background */
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* -----------------------------------
+   Scrollbar Styles (WebKit Browsers)
+----------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* -----------------------------------
+   Animations
+----------------------------------- */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Voice Pulse Effect */
+.voice-pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.7; }
+}
+
+/* -----------------------------------
+   Focus Styles Override
+----------------------------------- */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* -----------------------------------
+   Loading State (Shimmer Effect)
+----------------------------------- */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+}
+@keyframes loading {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* -----------------------------------
+   High Contrast Mode
+----------------------------------- */
+@media (prefers-contrast: high) {
+  .bg-light {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+  .text-muted {
+    color: #fff !important;
+  }
+}
+
+/* -----------------------------------
+   Reduced Motion
+----------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* -----------------------------------
+   Print Styles
+----------------------------------- */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* -----------------------------------
+   Optional: Yellow Background Mode
+----------------------------------- */
+.bg-warning-custom {
+  background-color: yellow !important;
+}
+/* Ensure full height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Make app-root fill the space */
+app-root {
+  display: block;
+  height: 100%;
+}
